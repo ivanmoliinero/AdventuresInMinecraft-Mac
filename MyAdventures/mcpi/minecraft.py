@@ -175,6 +175,13 @@ class Minecraft:
         """Get the height of the world (x,z) => int"""
         return int(self.conn.sendReceive(b"world.getHeight", intFloor(args)))
 
+    ############# GET HEIGHTS METHOD #############
+    def getHeights(self, *args):
+        """Get the heights of the world (x,z) => [id:int]"""
+        s = self.conn.sendReceive(b"world.getHeights", intFloor(args))
+        return map(int, s.split(","))
+    ##############################################
+
     def getPlayerEntityIds(self):
         """Get the entity ids of the connected players => [id:int]"""
         ids = self.conn.sendReceive(b"world.getPlayerIds")
